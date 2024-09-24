@@ -1,6 +1,12 @@
+using APIdotnet.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<AgendaContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoPadrao"))); // conecta ao banco de dados
+
 builder.Services.AddControllers(); // Adicione o serviço de controllers
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
