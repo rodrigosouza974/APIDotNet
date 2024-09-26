@@ -23,7 +23,7 @@ namespace APIdotnet.Controllers
         {
             _context.Add(contato);
             _context.SaveChanges();
-            return Ok(contato);
+            return CreatedAtAction(nameof(ObterPorId),new{id = contato.Id},contato);
         }
 
         [HttpGet("{id}")]
@@ -42,8 +42,6 @@ namespace APIdotnet.Controllers
            var contatos = _context.Contatos.Where(x=> x.Nome.Contains(nome));
            return Ok(contatos);
         }
-
-
         [HttpPut("{id}")]
         public IActionResult Atulizar(int id, Contato contato)
         {
