@@ -36,6 +36,13 @@ namespace APIdotnet.Controllers
 
            return Ok(contato);
         }
+         [HttpGet("ObterPorNome")]
+        public IActionResult ObterPorNome(string nome)
+        {
+           var contatos = _context.Contatos.Where(x=> x.Nome.Contains(nome));
+           return Ok(contatos);
+        }
+
 
         [HttpPut("{id}")]
         public IActionResult Atulizar(int id, Contato contato)
