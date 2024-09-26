@@ -42,7 +42,7 @@ namespace APIdotnet.Controllers
         {
            var contatoBanco = _context.Contatos.Find(id);
            
-           if (contato == null)
+           if (contatoBanco == null)
                 return NotFound();
 
             contatoBanco.Nome = contato.Nome;
@@ -52,6 +52,19 @@ namespace APIdotnet.Controllers
             _context.Contatos.Update(contatoBanco);
             _context.SaveChanges();
             return Ok(contatoBanco);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
+        {
+           var contatoBanco = _context.Contatos.Find(id);
+           
+           if (contatoBanco == null)
+                return NotFound();
+
+            _context.Contatos.Remove(contatoBanco);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }
